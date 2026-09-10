@@ -53,19 +53,141 @@ Finally, K-Means clustering, validated using Ward hierarchical clustering with a
 The resulting insights were integrated into a three-page Power BI dashboard designed to support district prioritisation, vulnerability diagnosis, and inter-survey socioeconomic monitoring.
 
 ## Methodology
-
-**Pipeline Data & Variables:**
-![image](https://github.com/user-attachments/assets/ce15c564-c720-4a5f-becf-16da71085b0b)
-
 **Pipeline Project Methodology**
 ![image1](https://github.com/user-attachments/assets/4b5ab6d0-0ca0-4f1b-9b41-0b1a9a1bfb0e)
 
-1. **Data Preparation** — Integrated and cleaned socioeconomic data from DOSM/OpenDOSM and the Ministry of Education across Pahang's 11 districts.
-2. **Exploratory & Statistical Analysis** — Analysed relationships between employment indicators and poverty to identify socioeconomic patterns.
-3. **District Vulnerability Index (DVI)** — Developed a multidimensional index using labour, demographic, living-condition and price-pressure indicators.
-4. **Nowcasting** — Used PCHIP interpolation and machine learning models to estimate household income and poverty during HIES gap years.
-5. **Clustering** — Applied K-Means clustering to identify districts with similar vulnerability profiles.
-6. **Dashboard Development** — Integrated the findings into an interactive Power BI decision-support dashboard for district-level monitoring and prioritisation.
+### **Phase 1 — Data Preparation**
+
+Collect socioeconomic datasets from DOSM/OpenDOSM and the Ministry of Education, covering Pahang's 11 administrative districts.
+
+The datasets are cleaned and standardised by:
+- Standardising district names and year formats
+- Converting variables into consistent numeric formats and units
+- Checking duplicates and invalid values
+- Assessing missing observations
+- Aligning datasets to a common district-year structure
+
+A master district-year panel is then created by merging the cleaned datasets using `district` and `year` as the common keys.
+
+![image](https://github.com/user-attachments/assets/fcdf6d94-4c4d-4919-9a6e-a2abab4c7d20)
+
+### **Phase 2 — Employment vs Poverty Analysis**
+
+Test whether unemployment can reliably represent household poverty.
+1. Match employment indicators with HIES poverty observations.
+2. Examine the relationship between unemployment, LFPR and poverty.
+![image](https://github.com/user-attachments/assets/63f9f2e0-e7ea-4c06-8a02-a8e7bdfbece3)
+
+3. Apply correlation analysis and OLS regression.
+4. Use district-level bootstrap resampling to assess uncertainty.
+5. Identify districts with low unemployment but high poverty as potential working-poor areas.
+![image](https://github.com/user-attachments/assets/293279e9-306b-4824-954e-c057796eb13e)
+
+### **Phase 3 — District Vulnerability Index (DVI)**
+
+Construct a multidimensional District Vulnerability Index using four dimensions:
+- Labour-market vulnerability
+- Household economic vulnerability
+- Living-condition vulnerability
+- Price pressure
+
+Indicators are transformed so that higher values consistently represent greater vulnerability and are then normalised using min-max scaling.
+
+The four dimension scores are aggregated using equal weighting:
+$`
+DVI=(L+H+C+P)/4
+`$	​
+
+### **Phase 4 — DVI Validation & Driver Analysis**
+
+Validate whether the DVI reflects actual socioeconomic hardship.
+
+1. Compare DVI scores against observed HIES poverty.
+2. Evaluate the correlation and rank agreement between DVI and poverty.
+3. Use PCA as a sensitivity check against the equal-weighted approach.
+4. Examine individual dimensions to identify the main vulnerability drivers for each district.
+
+### **Phase 5 — Vulnerability Clustering**
+
+Group districts according to their vulnerability profiles, rather than only their overall severity.
+
+1. Calculate each district's average vulnerability profile.
+2. Apply K-Means clustering.
+3. Determine an appropriate number of clusters using silhouette analysis.
+4. Validate the resulting clusters using Ward hierarchical clustering.
+5. Calculate the Adjusted Rand Index (ARI) to assess agreement between methods.
+6. Assign interpretable vulnerability typologies to the resulting clusters.
+
+### **Phase 6 — Nowcasting Framework**
+
+Address the information gap between HIES release years.
+The nowcasting process consists of two stages:
+
+**Historical completion**  
+- Retain observed HIES values for 2019, 2022 and 2024.
+- Use PCHIP interpolation to estimate missing historical years.
+- Flag interpolated observations separately from official observations.
+
+**Future nowcasting**  
+- Train models using the completed historical panel.
+- Generate estimates for 2025–2027 using projected socioeconomic predictors.
+
+![image](https://github.com/user-attachments/assets/c28306c2-55ae-43c5-a999-a79183f16b92)
+
+### **Phase 7 — Resampling & Uncertainty Quantification** 
+
+Quantify uncertainty around the nowcasted values using:
+- 5,000 district-cluster bootstrap samples
+- 5,000 Monte Carlo simulations
+- 95% prediction intervals
+
+This allows the dashboard to present not only point estimates but also the uncertainty associated with future projections.
+
+### **Phase 8 — Model Diagnostics & Cross-Validation**  
+Evaluate candidate predictive models using Leave-One-Out Cross-Validation (LOOCV).
+Candidate models include:
+- OLS Regression
+- Ridge Regression
+- Depth-3 Regression Tree
+- Decision Tree
+
+Model performance is compared using MAE, RMSE, MAPE and R². Residual diagnostics are also performed to assess model behaviour.
+
+The selected models are:
+- Ridge Regression → Poverty nowcasting
+- Depth-3 Regression Tree → Median income nowcasting
+
+### **Phase 9 — Database & Analytical Output Layer
+
+Store the cleaned datasets and analytical outputs in Supabase PostgreSQL to provide a central data layer for the dashboard.
+
+The pipeline connects:
+```
+Raw Data
+   ↓
+Cleaned Master Panel
+   ↓
+DVI & Analytical Outputs
+   ↓
+Nowcasting & Clustering Results
+   ↓
+Supabase PostgreSQL
+```
+
+This creates a structured and reproducible data layer for downstream visualisation and reporting.
+
+### **Phase 10 — Dashboard & Reporting**
+
+Develop an interactive Power BI dashboard to translate the analytical outputs into decision-support insights.
+
+The dashboard consists of:
+- **Executive Overview & Labour Mismatch** — employment–poverty relationship and district overview
+- **District Vulnerability & Typology** — DVI rankings, vulnerability drivers and district clusters
+- **Economic Nowcasting & Uncertainty** — income and poverty estimates with prediction intervals
+
+The final outputs allow users to identify where vulnerability is highest, what drives it, and which districts share similar intervention needs.
+
+NADA Dashboard link: https://app.powerbi.com/view?r=eyJrIjoiMTBhMGQ5MjMtY2QwMC00NDkwLTg1N2UtNDY5YmVjNDVhYTkxIiwidCI6IjE4Y2U3NmY2LTk5ZjQtNDU3Zi05ZjYyLWFjZDY1ZDliOTc3NyIsImMiOjEwfQ%3D%3D 
 
 ## Key Findings
 ### **1. Unemployment is not a reliable standalone measure of poverty**  
