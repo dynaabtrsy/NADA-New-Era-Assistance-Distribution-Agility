@@ -22,12 +22,12 @@ If you have any trouble opening the dashboard, please do not hesitate to contact
 
 ## Table of Contents
 - [Overview](#Overview)
-- [Executive Summary](#ExecutiveSummary) 
+- [Executive Summary](#Executive-Summary) 
 - [Methodology](#Methodology)
-- [Key Findings](#KeyFindings)
+- [Key Findings](#Key-Findings)
 - [Recommendations](#Recommendations)
 - [Limitations](#Limitations)
-- [Project Impact](#ProjectImpact)
+- [Project Impact](#Project-Impact)
 - [Dashboard](#Dashboard)
 
 ## Executive Summary
