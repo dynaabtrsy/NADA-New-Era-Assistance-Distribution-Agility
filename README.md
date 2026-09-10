@@ -53,9 +53,12 @@ Finally, K-Means clustering, validated using Ward hierarchical clustering with a
 The resulting insights were integrated into a three-page Power BI dashboard designed to support district prioritisation, vulnerability diagnosis, and inter-survey socioeconomic monitoring.
 
 ## Methodology
-NADA follows a Descriptive → Diagnostic → Predictive → Prescriptive analytical framework.
 
-![image1](https://github.com/user-attachments/assets/c22dc71f-6724-4ef0-be66-70a326e1b10b)
+**Pipeline Data & Variables:**
+![image](https://github.com/user-attachments/assets/ce15c564-c720-4a5f-becf-16da71085b0b)
+
+**Pipeline Project Methodology**
+![image1](https://github.com/user-attachments/assets/4b5ab6d0-0ca0-4f1b-9b41-0b1a9a1bfb0e)
 
 1. **Data Preparation** — Integrated and cleaned socioeconomic data from DOSM/OpenDOSM and the Ministry of Education across Pahang's 11 districts.
 2. **Exploratory & Statistical Analysis** — Analysed relationships between employment indicators and poverty to identify socioeconomic patterns.
