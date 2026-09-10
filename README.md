@@ -1,7 +1,7 @@
 # NADA-New-Era-Assistance-Distribution-Agility
 ## Overview
 
-NADA (New-Era Assistance Distribution Agility) is a data-driven socioeconomic decision-support project developed for the DAX Challenge 2026 — Integrating Data and AI for a Sustainable Pahang.
+NADA (New-Era Assistance Distribution Agility) is a data-driven socioeconomic decision-support project developed for the DAX Challenge 2026 — _Integrating Data and AI for a Sustainable Pahang_.
 
 The project addresses a key limitation in socioeconomic planning: low unemployment does not necessarily indicate low household poverty. Using district-level data from DOSM/OpenDOSM and the Ministry of Education, NADA analyses socioeconomic vulnerability across all 11 administrative districts in Pahang, Malaysia.
 
@@ -11,7 +11,7 @@ The interactive Power BI dashboard can be viewed [here](https://app.powerbi.com/
 If you have any trouble opening the dashboard, please do not hesitate to contact me at dynaabtrsy@gmail.com.
 
 
-**Key Technologies**
+**Key Technologies:**
 - Python — Data cleaning, EDA, statistical analysis, modelling & clustering
 - Pandas / NumPy — Data processing and feature engineering
 - Scikit-learn — Machine learning and clustering
@@ -22,12 +22,12 @@ If you have any trouble opening the dashboard, please do not hesitate to contact
 
 ## Table of Contents
 - [Overview](#Overview)
-- [Executive Summary](#Executive Summary) 
+- [Executive Summary](#ExecutiveSummary) 
 - [Methodology](#Methodology)
-- [Key Findings](#Key Findings)
+- [Key Findings](#KeyFindings)
 - [Recommendations](#Recommendations)
 - [Limitations](#Limitations)
-- [Project Impact](#Project Impact)
+- [Project Impact](#ProjectImpact)
 - [Dashboard](#Dashboard)
 
 ## Executive Summary
@@ -39,7 +39,8 @@ To address this gap, NADA developed a District Vulnerability Index (DVI) using f
 1. Labour-market vulnerability
 2. Household economic pressure
 3. Living-condition vulnerability
-4. Macroeconomic price pressure
+4. Macroeconomic price pressure  
+
 The DVI demonstrated a significant relationship with actual poverty (r ≈ 0.575, p < 0.001), providing evidence that a multidimensional indicator can serve as an interim vulnerability signal between HIES releases.
 
 A nowcasting framework was then developed to estimate household income and poverty during non-survey years. Median household income achieved R² = 0.662 and MAPE = 6.31%, while the poverty model achieved R² = 0.533 and MAPE = 48.07%. Therefore, income estimates provide stronger predictive performance, while poverty estimates are more appropriate as directional early-warning signals.
@@ -48,6 +49,7 @@ Finally, K-Means clustering, validated using Ward hierarchical clustering with a
 - Labour/Household-driven
 - Living-condition-driven
 - Compound labour + living-condition
+
 The resulting insights were integrated into a three-page Power BI dashboard designed to support district prioritisation, vulnerability diagnosis, and inter-survey socioeconomic monitoring.
 
 ## Methodology
@@ -63,28 +65,33 @@ NADA follows a Descriptive → Diagnostic → Predictive → Prescriptive analyt
 6. **Dashboard Development** — Integrated the findings into an interactive Power BI decision-support dashboard for district-level monitoring and prioritisation.
 
 ## Key Findings
-1. **Unemployment is not a reliable standalone measure of poverty**  
+### **1. Unemployment is not a reliable standalone measure of poverty**  
+
 Unemployment showed almost no statistically defensible relationship with poverty
 ```
 Pearson r = −0.020, p = 0.910
 ```
-  This suggests that unemployment-only targeting may overlook economically vulnerable districts.
 
-2. **LFPR provides a stronger socioeconomic signal**  
+This suggests that unemployment-only targeting may overlook economically vulnerable districts.
+
+### **2. LFPR provides a stronger socioeconomic signal**  
+
 LFPR demonstrated a significant negative relationship with poverty:
 ```
 Pearson r = −0.564, p = 0.0006
 ```
-  Higher labour-force participation was associated with lower poverty.
 
-3. **Lipis and Maran demonstrate the working-poor pattern**  
+Higher labour-force participation was associated with lower poverty.
+
+### **3. Lipis and Maran demonstrate the working-poor pattern**  
+
 Both districts recorded relatively low unemployment but comparatively high poverty and lower LFPR.
 This demonstrates why employment status alone may conceal household economic insecurity.
 
-4. **Maran, Lipis and Jerantut show high DVI vulnerability**  
+### **4. Maran, Lipis and Jerantut show high DVI vulnerability**  
 These districts recorded the highest average DVI scores, with Maran and Lipis consistently ranking near the top from 2021 onwards.
 
-5. **Income nowcasting is more reliable than poverty nowcasting**
+### **5. Income nowcasting is more reliable than poverty nowcasting**
 ```
 Median income achieved:
 R² = 0.662 | MAPE = 6.31%
@@ -92,29 +99,36 @@ R² = 0.662 | MAPE = 6.31%
 compared with:
 Poverty: R² = 0.533 | MAPE = 48.07%
 ```
+
 Therefore, income estimates can be used with greater confidence, while poverty estimates should primarily support early-warning monitoring.
 
-6. **Lipis has a distinctive compound vulnerability**  
+### **6. Lipis has a distinctive compound vulnerability**  
+
 Clustering identified Lipis as the only district exhibiting elevated labour and living-condition vulnerability simultaneously, which is not fully visible from its overall DVI ranking alone.
 
 ## Recommendations
-1. **Move beyond unemployment-only targeting**  
+### **1. Move beyond unemployment-only targeting**  
+
 District-level aid and development decisions should incorporate DVI, LFPR and other socioeconomic indicators rather than relying solely on unemployment rates.
 
-2. **Prioritise persistently vulnerable districts**  
+### **2. Prioritise persistently vulnerable districts**  
+
 Maran, Lipis, Bera, Jerantut and Rompin should receive closer monitoring and socioeconomic assessment based on their vulnerability profiles and historical patterns.
 
-3. **Match interventions to vulnerability type**  
+### **3. Match interventions to vulnerability type**  
+
 Different districts require different responses.  
 For example:
-- Labour/household-driven vulnerability → employment and income-support interventions
-- Living-condition vulnerability → infrastructure and basic-service improvements
-- Compound vulnerability → integrated interventions addressing multiple dimensions
+  + Labour/household-driven vulnerability → employment and income-support interventions
+  + Living-condition vulnerability → infrastructure and basic-service improvements
+  + Compound vulnerability → integrated interventions addressing multiple dimensions
 
-4. **Use nowcasting as an early-warning system**  
+### **4. Use nowcasting as an early-warning system**  
+
 Nowcasted poverty and income should help policymakers monitor conditions between HIES releases, but should not be used as automatic triggers for funding or treated as official statistics.
 
-5. **Continuously validate and recalibrate the models**
+### **5. Continuously validate and recalibrate the models**
+
 As new HIES observations become available, actual outcomes should be compared against previous nowcasts to improve model calibration and reliability.
 
 ## Limitations
