@@ -157,7 +157,7 @@ The selected models are:
 - Ridge Regression → Poverty nowcasting
 - Depth-3 Regression Tree → Median income nowcasting
 
-### **Phase 9 — Database & Analytical Output Layer
+### **Phase 9 — Database & Analytical Output Layer**
 
 Store the cleaned datasets and analytical outputs in Supabase PostgreSQL to provide a central data layer for the dashboard.
 
