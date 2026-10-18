@@ -7,10 +7,6 @@ The project addresses a key limitation in socioeconomic planning: low unemployme
 
 The project combines statistical analysis, a District Vulnerability Index (DVI), machine-learning-based nowcasting, clustering, and an interactive Power BI dashboard to help policymakers identify vulnerable districts and understand the underlying drivers of vulnerability between official HIES release years.
 
-The interactive Power BI dashboard can be viewed [here](https://app.powerbi.com/view?r=eyJrIjoiMTBhMGQ5MjMtY2QwMC00NDkwLTg1N2UtNDY5YmVjNDVhYTkxIiwidCI6IjE4Y2U3NmY2LTk5ZjQtNDU3Zi05ZjYyLWFjZDY1ZDliOTc3NyIsImMiOjEwfQ%3D%3D).
-If you have any trouble opening the dashboard, please do not hesitate to contact me at dynaabtrsy@gmail.com.
-
-
 **Key Technologies:**
 - Python — Data cleaning, EDA, statistical analysis, modelling & clustering
 - Pandas / NumPy — Data processing and feature engineering
